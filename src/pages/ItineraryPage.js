@@ -90,19 +90,19 @@ const ItineraryPage = () => {
   }, [controls]);
 
   return (
-    <div style={{ position: 'relative', height: '300vh', width: '100vw' }}>
+    <div style={{ position: 'relative', height: '200vh', width: '100%' }}>
       <div className="itinerary-background"></div>
-      <motion.div className="grain-overlay" style={{
+
+      <motion.div className="itinerary-container" style={{
         backgroundImage: 'url(images/scratches.png)',
         backgroundPosition: 'bottom',
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
-      }} animate={controls}></motion.div>
-      <div className="itinerary-container">
+      }} animate={controls}> 
         <div className="itinerary-container-title">
-          <h1>ITINERARY</h1>
+          <p>ITINERARY</p>
         </div>
-
+        <div className='itinerary-list'>
         <ItineraryItem
           title="Music Video"
           startTime="1:00 PM"
@@ -130,9 +130,11 @@ const ItineraryPage = () => {
           endTime="2:00 AM"
           imageSrc="images/barbs.png"
         />
+        </div>
+        
         <div className='divider'></div>
         <RSVPButton onClick={toggleModal} />
-      </div>
+      </motion.div>
 
       <RSVPModal isModalOpen={isModalOpen} toggleModal={toggleModal} />
     </div>

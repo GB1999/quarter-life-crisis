@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {motion, useScroll, useMotionValue, useTransform} from 'framer-motion'
+import {motion, useScroll, useMotionValue, useAnimation, useTransform} from 'framer-motion'
 import './App.css';
 import ItineraryPage from './pages/ItineraryPage';
 
@@ -37,7 +37,7 @@ function App() {
   // let {scrollYProgress}= useScroll();
   // let y = useTransform{scrollYProgress, }
   return (
-    <div style={{backgroundColor:"black"}}>
+    <div >
      <HomePage/>
 
      <ItineraryPage/>
@@ -50,9 +50,25 @@ function HomePage() {
   const [currentFrame, setCurrentFrame] = useState(0);
   const ref = useRef(null)
   const {scrollYProgress} = useScroll();
-  const xTransform = useTransform(scrollYProgress, [0, 1], [0, 300])
-  const xTransformleft  = useTransform(scrollYProgress, [0, 1], [0, -300])
+  const xTransform = useTransform(scrollYProgress, [0, 1], [0, 1500])
+  const xTransformleft  = useTransform(scrollYProgress, [0, 1], [0, -1500])
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const jitter = async () => {
+      while (true) {
+        await controls.start({
+          backgroundPosition: `${Math.random() * 400 - 200}px ${Math.random() * 400 - 200}px`,
+          
+          transition: { duration: 0.01, ease: "linear" } // Adjust duration for speed
+        });
+        await new Promise(resolve => setTimeout(resolve, 300)); // Adjust delay for frame rate
+      }
+    };
+
+    jitter();
+  }, [controls]);
 
 
   useEffect(() => {
@@ -65,7 +81,12 @@ function HomePage() {
 
   return (
     <div className="container">
-
+      <motion.div className="grain-overlay" style={{
+        backgroundImage: 'url(images/scratches.png)',
+        backgroundPosition: 'bottom',
+        backgroundSize: 'cover',
+        mixBlendMode: 'lighten',
+      }} animate={controls}></motion.div>
       <div className="portrait-container">
         <motion.img 
           src={getFramePath('portrait-sequence', getLoopedFrame(currentFrame, TOTAL_FRAMES, 4))} 
@@ -84,6 +105,7 @@ function HomePage() {
             className="title-image title-quarter"
             style={{ left: xTransform }}
           />
+          
           <motion.img 
             src={getFramePath('title-life-sequence', getLoopedFrame(currentFrame, TITLE_FRAMES, 0))} 
             alt="Life Title" 
