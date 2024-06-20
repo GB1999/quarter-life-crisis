@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/quarter-life-crisis/static/css/main.f450c6e6.css",
+    "main.js": "/quarter-life-crisis/static/js/main.c66549c9.js",
+    "static/js/453.fc8902bc.chunk.js": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js",
+    "index.html": "/quarter-life-crisis/index.html",
+    "main.f450c6e6.css.map": "/quarter-life-crisis/static/css/main.f450c6e6.css.map",
+    "main.c66549c9.js.map": "/quarter-life-crisis/static/js/main.c66549c9.js.map",
+    "453.fc8902bc.chunk.js.map": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f450c6e6.css",
+    "static/js/main.c66549c9.js"
+  ]
+}
