@@ -132,7 +132,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 12; /* Ensure it is above the solid background */
+  z-index: 11; /* Ensure it is above the solid background */
   pointer-events: none; /* Allow interactions to pass through */
 }
 .itinerary-background {
@@ -141,7 +141,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFFFFF; /* Solid background color */
+  background-color: #000000;
   z-index: 10; /* Ensure it is behind the grain overlay */
 }
 
@@ -151,14 +151,15 @@ body {
   text-align: center;
   font-size: 5rem;
   margin-bottom: 20px;
-  color: black;
-  z-index: 11;
+  color: rgb(255, 255, 255);
+  z-index: 12;
 }
 
 .itinerary-container-title{
   margin-bottom: 20px;
   font-family: 'Josefin Sans', sans-serif;
   padding: 10vh;
+  color: white;
 }
 
 .itinerary-item {
@@ -166,9 +167,10 @@ body {
   flex-direction: column; /* Default to row for larger screens */
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
   padding:10vw;
-  box-shadow: 0 0 0 2px white; /* Border effect */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 13;
 }
@@ -199,7 +201,7 @@ body {
 .itinerary-times p {
   margin: 0;
   padding: 10px 10PX;
-  color: #000;
+  color: #ffffff;
   font-size: 2rem;
 }
 
@@ -214,7 +216,6 @@ a {
   align-items: center;
   margin-top: 20px;
   height: 30vh;
-  background-color: black;
 }
 
 
@@ -232,9 +233,10 @@ a {
   justify-content: center;
   align-items: center;
   height: 10vh;
-  width: 30vw;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50vw;
+  box-shadow: 0 4px 6px black;
   transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
+  outline: 2px solid rgb(0, 0, 0); 
 }
 
 
@@ -250,17 +252,17 @@ a {
 .divider {
   width: 100%;
   height: 1px; /* Adjust the height as needed */
-  background-color: black; /* Divider color */
+  background-color: rgb(255, 255, 255); /* Divider color */
   margin: 5px 0; /* Adjust the margin as needed */
 }
 
 .itinerary-image-container {
-  width: 100%; /* Full width of the window */
+  width: 60vh; /* Full width of the window */
   max-width: 100%; /* Ensures the container does not exceed the window width */
   position: relative; /* For absolutely positioning the child image */
   overflow: hidden; /* Ensures the container does not overflow */
   height: 40vh; /* Ensure the container's height is determined by its content */
-  box-shadow:  10px 5px 5px gray;
+  box-shadow:  10px 5px 5px black;
   z-index: 20;
 }
 .itinerary-image-container ::before {

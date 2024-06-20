@@ -40,6 +40,7 @@ function App() {
      <HomePage/>
 
      <ItineraryPage/>
+
     </div>
   );
 }
@@ -111,37 +112,8 @@ function HomePage() {
 }
 
 
-  
-function ExplainationPage() {
-  const { scrollYProgress } = useScroll();
+ 
 
-  // Define opacity animation based on scroll position
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  return (
-    <div 
-    className='explanation-page'
-    >
-      
-      <div className='explanation-description'>
-          <p className='josefin-sans-light-300  text-white lg:text-6xl md:text-4xl z-50'>
-          Join me for my 25th birthday as we celebrate in style, inspired by Elton John's iconic "I'm Still Standing." Embrace the vibrant and colorful vibe of the 80s with fashion and decor straight out of the music video. Enjoy an unforgettable night filled with dancing to live renditions of classic hits, heartfelt toasts, and making memories with my closest friends and family. Let's make this milestone a true celebration of life and the journey we share.
-          </p>
-      </div>
-      <div className='explanation-quote'>
-      <AnimatedText/>
-      <ImageWithRoundedCorner/>  
-      
-      <div >
-      
-
-      </div>
-
-      </div>
-      
-     
-    </div>
-  );
-}
 const textVariants = {
   hidden: { x: '50px', opacity: 0 },
   visible: (i) => ({

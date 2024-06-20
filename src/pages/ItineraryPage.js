@@ -52,11 +52,34 @@ const ItineraryItem = ({ title, startTime, endTime, imageSrc, parallaxY }) => {
             
           
       
-        
+       
       </motion.div>
       
     );
   };
+  
+const RSVPButton = () => {
+
+ 
+
+  const handleClick = () => {
+
+  };
+
+  return (
+    <div className="rsvp-container">
+      <motion.button
+        className="rsvp-button"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={handleClick}
+      >
+        RSVP
+      </motion.button>
+    </div>
+  );
+};
+
 
 const ItineraryPage = () => {
   const { scrollY } = useViewportScroll();
@@ -65,19 +88,19 @@ const ItineraryPage = () => {
 
 
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
-      <div className="itinerary-background"></div>
-      <div className="grain-overlay" style={{
-            backgroundImage: 'url(../../images/grain.jpg)',
+    <div style={{ position: 'relative', height: '300vh', width: '100vw' }}>
+    <div className="itinerary-background"></div>
+    <div className="grain-overlay" style={{
+            backgroundImage: 'url(../../images/scratches.png)',
             backgroundPosition: 'bottom',
-            backgroundSize: 'fill',
-            mixBlendMode: 'soft-light',
+            backgroundSize: 'cover',
+            mixBlendMode: 'lighten',
+
           }}></div>
-    <div className="itinerary-container" >
-       
-        <div className='itinerary-container-title'>
-            <h1>ITINERARY</h1>
-        </div>
+    <div className="itinerary-container">
+      <div className="itinerary-container-title">
+        <h1>ITINERARY</h1>
+      </div>
       
       <ItineraryItem
         title="Music Video"
@@ -91,9 +114,10 @@ const ItineraryPage = () => {
         title="Ride On Yaht"
         startTime="1:00 PM"
         endTime="5:00 PM"
-        imageSrc="../../images/yacht.webp"
+        imageSrc="../../images/photography.png"
         parallaxY={parallaxY}
       />
+      
       <ItineraryItem
         title="PreGame & Barbecue"
         startTime="6:00 PM"
@@ -101,16 +125,22 @@ const ItineraryPage = () => {
         imageSrc="../../images/ramen.png"
         parallaxY={parallaxY}
       />
-         <ItineraryItem
+      
+      <ItineraryItem
         title="LateNite at Barb's"
         startTime="10:00 PM"
         endTime="2:00 AM"
         imageSrc="../../images/barbs.png"
         parallaxY={parallaxY}
       />
+      <div className='divider'></div>
+      <RSVPButton></RSVPButton>
+      
     </div>
   </div>
-  );
-};
+);
 
+ 
+
+};
 export default ItineraryPage;
