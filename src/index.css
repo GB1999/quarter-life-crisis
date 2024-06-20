@@ -1,13 +1,280 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  position: relative;
+  width: 100%;
+  height: 165vw; /* Increased height to allow scrolling */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portrait-container {
+  position: fixed;
+  top: 0%;
+  z-index: 1;
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+}
+
+.foreground {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.foreground-image-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.foreground-image {
+  width: 100%; /* Ensure the image fills the width of the screen */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.text-container {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.title-image {
+  position: absolute;
+  scale: 80%;
+  top: 10vw;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+.title-quarter {
+  z-index: 4;
+}
+
+.title-life {
+  z-index: 5;
+}
+
+.title-crisis {
+  z-index: 6;
+}
+
+.subtitle {
+  position: absolute;
+  bottom: 10px;
+  z-index: 22;
+  width: 80%;
+}
+
+.explanation-page{
+  position: absolute;
+  height: 100vh;
+  background-color: #F3E7EF;
+  z-index: 10;
+}
+
+.explanation-description{
+  margin: '20px';
+  overflow-y: 'auto';
+  display: 'flex'; 
+  justify-content: 'center';
+}
+
+.explanation-quote {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.animated-text-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Adds space between each text item */
+}
+
+
+.josefin-sans-light-300 {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.grain-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 12; /* Ensure it is above the solid background */
+  pointer-events: none; /* Allow interactions to pass through */
+}
+.itinerary-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF; /* Solid background color */
+  z-index: 10; /* Ensure it is behind the grain overlay */
+}
+
+.itinerary-container {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: black;
+  z-index: 11;
+}
+
+.itinerary-container-title{
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 10vh;
+}
+
+.itinerary-item {
+  display: flex;
+  flex-direction: column; /* Default to row for larger screens */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding:10vw;
+  box-shadow: 0 0 0 2px white; /* Border effect */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 13;
+}
+.itinerary-item h1{
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  
+}
+
+
+.itinerary-details {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.itinerary-times {
+  display: flex;
+  flex-direction: column;
+  padding: 00px 40PX;
+}
+
+.itinerary-times p {
+  margin: 0;
+  padding: 10px 10PX;
+  color: #000;
+  font-size: 2rem;
+}
+
+a {
+  color: hotpink;
+  text-decoration: underline;
+}
+
+.rsvp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  height: 30vh;
+  background-color: black;
+}
+
+
+.rsvp-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 30vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
+}
+
+
+
+.rsvp-button:hover {
+  background-color: black;
+  color: white;
+  outline: 2px solid white; /* Add an outline on hover */
+}
+
+
+
+.divider {
+  width: 100%;
+  height: 1px; /* Adjust the height as needed */
+  background-color: black; /* Divider color */
+  margin: 5px 0; /* Adjust the margin as needed */
+}
+
+.itinerary-image-container {
+  width: 100%; /* Full width of the window */
+  max-width: 100%; /* Ensures the container does not exceed the window width */
+  position: relative; /* For absolutely positioning the child image */
+  overflow: hidden; /* Ensures the container does not overflow */
+  height: 40vh; /* Ensure the container's height is determined by its content */
+  box-shadow:  10px 5px 5px gray;
+  z-index: 20;
+}
+.itinerary-image-container ::before {
+  content: '';
+  display: block;
+}
+
+.itinerary-image-container img {
+  z-index: 20;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Ensures the image covers the container while maintaining aspect ratio */
 }
