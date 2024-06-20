@@ -3,7 +3,7 @@ import { motion, useMotionValue, useTransform, useAnimation, useViewportScroll, 
 import useOnScreen from '../hooks/useOnScreen';
 import useWindowSize from '../hooks/useWindowSize';
 
-const ItineraryItem = ({ title, startTime, endTime, imageSrc, parallaxY }) => {
+const ItineraryItem = ({ title, startTime, endTime, imageSrc }) => {
   const ref = useRef();
   const isVisible = useOnScreen(ref);
   const windowSize = useWindowSize();
@@ -65,23 +65,39 @@ const RSVPButton = ({ onClick }) => (
 const ItineraryPage = () => {
   const { scrollY } = useViewportScroll();
   const y = useMotionValue(scrollY);
-  const parallaxY = useTransform(y, [0, 1], [0, -50]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const controls = useAnimation();
+
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     console.log("OPEN MODAL");
   };
 
+  useEffect(() => {
+    const jitter = async () => {
+      while (true) {
+        await controls.start({
+          backgroundPosition: `${Math.random() * 400 - 200}px ${Math.random() * 400 - 200}px`,
+          
+          transition: { duration: 0.01, ease: "linear" } // Adjust duration for speed
+        });
+        await new Promise(resolve => setTimeout(resolve, 300)); // Adjust delay for frame rate
+      }
+    };
+
+    jitter();
+  }, [controls]);
+
   return (
     <div style={{ position: 'relative', height: '300vh', width: '100vw' }}>
       <div className="itinerary-background"></div>
-      <div className="grain-overlay" style={{
-        backgroundImage: 'url(../../images/scratches.png)',
+      <motion.div className="grain-overlay" style={{
+        backgroundImage: 'url(images/scratches.png)',
         backgroundPosition: 'bottom',
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
-      }}></div>
+      }} animate={controls}></motion.div>
       <div className="itinerary-container">
         <div className="itinerary-container-title">
           <h1>ITINERARY</h1>
@@ -92,7 +108,6 @@ const ItineraryPage = () => {
           startTime="1:00 PM"
           endTime="5:00 PM"
           imageSrc="images/group_pic.JPG"
-          parallaxY={parallaxY}
         />
 
         <ItineraryItem
@@ -100,7 +115,6 @@ const ItineraryPage = () => {
           startTime="1:00 PM"
           endTime="5:00 PM"
           imageSrc="images/photography.png"
-          parallaxY={parallaxY}
         />
 
         <ItineraryItem
@@ -108,7 +122,6 @@ const ItineraryPage = () => {
           startTime="6:00 PM"
           endTime="10:00 PM"
           imageSrc="images/ramen.png"
-          parallaxY={parallaxY}
         />
 
         <ItineraryItem
@@ -116,7 +129,6 @@ const ItineraryPage = () => {
           startTime="10:00 PM"
           endTime="2:00 AM"
           imageSrc="images/barbs.png"
-          parallaxY={parallaxY}
         />
         <div className='divider'></div>
         <RSVPButton onClick={toggleModal} />
