@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'PunkLight';
+  src: url('./fonts/punk-light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PunkLight2';
+  src: url('./fonts/punk-light-2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'PunkLight', sans-serif;
+  font-family: 'PunkLight2', sans-serif;
+}

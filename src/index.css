@@ -196,13 +196,14 @@ body {
   display: flex;
   flex-direction: column;
   padding: 00px 40PX;
+  font-family: 'PunkLight2', sans-serif;
 }
 
 .itinerary-times p {
   margin: 0;
   padding: 10px 10PX;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 a {
@@ -257,11 +258,10 @@ a {
 }
 
 .itinerary-image-container {
-  width: 60vh; /* Full width of the window */
-  max-width: 100%; /* Ensures the container does not exceed the window width */
-  position: relative; /* For absolutely positioning the child image */
-  overflow: hidden; /* Ensures the container does not overflow */
-  height: 40vh; /* Ensure the container's height is determined by its content */
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;/* Ensure the container's height is determined by its content */
   box-shadow:  10px 5px 5px black;
   z-index: 20;
 }
@@ -302,6 +302,8 @@ a {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1001;
+  width: 80%; /* Set width to 80% for responsiveness */
+  max-width: 600px; 
 }
 
 .modal form {
@@ -314,6 +316,7 @@ a {
 }
 
 .modal input[type="text"],
+
 .modal select {
   padding: 5px;
   margin-top: 5px;
