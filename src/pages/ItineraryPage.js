@@ -91,7 +91,7 @@ const ItineraryPage = () => {
           title="Music Video"
           startTime="1:00 PM"
           endTime="5:00 PM"
-          imageSrc="/images/group_pic.JPG"
+          imageSrc="images/group_pic.JPG"
           parallaxY={parallaxY}
         />
 
@@ -99,7 +99,7 @@ const ItineraryPage = () => {
           title="Ride On Yaht"
           startTime="1:00 PM"
           endTime="5:00 PM"
-          imageSrc="/images/photography.png"
+          imageSrc="images/photography.png"
           parallaxY={parallaxY}
         />
 
@@ -107,7 +107,7 @@ const ItineraryPage = () => {
           title="PreGame & Barbecue"
           startTime="6:00 PM"
           endTime="10:00 PM"
-          imageSrc="/images/ramen.png"
+          imageSrc="images/ramen.png"
           parallaxY={parallaxY}
         />
 
@@ -115,7 +115,7 @@ const ItineraryPage = () => {
           title="LateNite at Barb's"
           startTime="10:00 PM"
           endTime="2:00 AM"
-          imageSrc="/images/barbs.png"
+          imageSrc="images/barbs.png"
           parallaxY={parallaxY}
         />
         <div className='divider'></div>

@@ -19,7 +19,7 @@ const padZero = (number, length) => {
 
 //use relative paths
 const getFramePath = (sequenceName, frameNumber) => {
-  return `/images/${sequenceName}/${sequenceName}_${frameNumber}.png`;
+  return `images/${sequenceName}/${sequenceName}_${frameNumber}.png`;
 };
 
 const getLoopedFrame = (currentFrame, totalFrames, loopFrames) => {
