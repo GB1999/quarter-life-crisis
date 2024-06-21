@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/quarter-life-crisis/static/css/main.96f4e808.css",
-    "main.js": "/quarter-life-crisis/static/js/main.2c9a57c5.js",
+    "main.js": "/quarter-life-crisis/static/js/main.0a071a04.js",
     "static/js/453.fc8902bc.chunk.js": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js",
     "static/media/punk-light.ttf": "/quarter-life-crisis/static/media/punk-light.8cbdef225088dbc2c2f1.ttf",
     "static/media/punk-light-2.ttf": "/quarter-life-crisis/static/media/punk-light-2.8ff80972d5b5aa27923e.ttf",
     "static/media/AlteHaasGroteskRegular.ttf": "/quarter-life-crisis/static/media/AlteHaasGroteskRegular.6ae6623ec966c59db9f2.ttf",
     "index.html": "/quarter-life-crisis/index.html",
     "main.96f4e808.css.map": "/quarter-life-crisis/static/css/main.96f4e808.css.map",
-    "main.2c9a57c5.js.map": "/quarter-life-crisis/static/js/main.2c9a57c5.js.map",
+    "main.0a071a04.js.map": "/quarter-life-crisis/static/js/main.0a071a04.js.map",
     "453.fc8902bc.chunk.js.map": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.96f4e808.css",
-    "static/js/main.2c9a57c5.js"
+    "static/js/main.0a071a04.js"
   ]
 }
