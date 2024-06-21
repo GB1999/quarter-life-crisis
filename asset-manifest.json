@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/quarter-life-crisis/static/css/main.4dccfd1e.css",
+    "main.css": "/quarter-life-crisis/static/css/main.04bab5f6.css",
     "main.js": "/quarter-life-crisis/static/js/main.87404b5a.js",
     "static/js/453.fc8902bc.chunk.js": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js",
     "static/media/punk-light.ttf": "/quarter-life-crisis/static/media/punk-light.8cbdef225088dbc2c2f1.ttf",
     "static/media/punk-light-2.ttf": "/quarter-life-crisis/static/media/punk-light-2.8ff80972d5b5aa27923e.ttf",
     "index.html": "/quarter-life-crisis/index.html",
-    "main.4dccfd1e.css.map": "/quarter-life-crisis/static/css/main.4dccfd1e.css.map",
+    "main.04bab5f6.css.map": "/quarter-life-crisis/static/css/main.04bab5f6.css.map",
     "main.87404b5a.js.map": "/quarter-life-crisis/static/js/main.87404b5a.js.map",
     "453.fc8902bc.chunk.js.map": "/quarter-life-crisis/static/js/453.fc8902bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4dccfd1e.css",
+    "static/css/main.04bab5f6.css",
     "static/js/main.87404b5a.js"
   ]
 }
