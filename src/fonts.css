@@ -12,7 +12,17 @@
   font-style: normal;
 }
 
+
+@font-face {
+  font-family: 'AlteHaas';
+  src: url('./fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'PunkLight', sans-serif;
   font-family: 'PunkLight2', sans-serif;
+  font-family: 'AlteHaas', sans-serif;
 }
+

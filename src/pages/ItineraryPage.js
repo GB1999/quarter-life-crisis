@@ -3,7 +3,7 @@ import { motion, useMotionValue, useTransform, useAnimation, useViewportScroll, 
 import useOnScreen from '../hooks/useOnScreen';
 import useWindowSize from '../hooks/useWindowSize';
 
-const ItineraryItem = ({ title, startTime, endTime, imageSrc }) => {
+const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
   const ref = useRef();
   const isVisible = useOnScreen(ref);
   const windowSize = useWindowSize();
@@ -29,10 +29,9 @@ const ItineraryItem = ({ title, startTime, endTime, imageSrc }) => {
   return (
     <motion.div
       ref={ref}
-      className="itinerary-item"
+      className={`itinerary-item ${imagePosition}`}
       style={{
         scale: isVisible ? 1.1 : 1, // Scale up when the item is in view
-        
       }}
     >
       <div className="itinerary-details">
@@ -99,6 +98,7 @@ const ItineraryPage = () => {
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
       }} animate={controls}> 
+     <EventDetails></EventDetails>
         <div className="itinerary-container-title">
           <p>ITINERARY</p>
         </div>
@@ -115,6 +115,7 @@ const ItineraryPage = () => {
           startTime="1:00 PM"
           endTime="5:00 PM"
           imageSrc="images/photography.png"
+          imagePosition="right"
         />
 
         <ItineraryItem
@@ -129,6 +130,7 @@ const ItineraryPage = () => {
           startTime="10:00 PM"
           endTime="2:00 AM"
           imageSrc="images/barbs.png"
+          imagePosition="left"
         />
         </div>
         
@@ -137,6 +139,30 @@ const ItineraryPage = () => {
       </motion.div>
 
       <RSVPModal isModalOpen={isModalOpen} toggleModal={toggleModal} />
+    </div>
+  );
+};
+
+
+const EventDetails = () => {
+  return (
+    <div className="event-details-container">
+      <div className="event-details">
+        <div className="date">July 20th, 2024</div>
+        <div className="time">8:00 PM - 11:00 PM</div>
+        <div className="dress-code">Dress Code: Cocktail</div>
+      </div>
+      <div className="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0868396343423!2d144.96316!3d-37.8136119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ceed2!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1648797356123!5m2!1sen!2sus"
+          width="400"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          title="Event Location"
+        ></iframe>
+      </div>
     </div>
   );
 };
@@ -158,32 +184,40 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => (
         >
           <h2>RSVP</h2>
           <form>
-            <label>
-              First Name:
+            <div className="form-group">
+              <label>First Name:</label>
               <input type="text" name="firstName" />
-            </label>
-            <label>
-              Last Name:
+            </div>
+            <div className="form-group">
+              <label>Last Name:</label>
               <input type="text" name="lastName" />
-            </label>
-            <label>
-              Will you be attending?
+            </div>
+            <div className="form-group">
+              <label>Will you be attending?</label>
               <select name="attendance">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
-            </label>
-            <label>
-              <input type="checkbox" name="plusOne" />
+            </div>
+            <div className="form-group">
+              <label>
               Bringing a plus one
-            </label>
-            <button type="submit">Submit</button>
-            <button type="button" onClick={toggleModal}>Cancel</button>
+                <input type="checkbox" name="plusOne" />
+                
+              </label>
+            </div>
+            <div className="form-group">
+              <button type="submit">Submit</button>
+            </div>
+            <div className="form-group">
+              <button type="button" onClick={toggleModal}>Cancel</button>
+            </div>
           </form>
         </motion.div>
       </motion.div>
     )}
   </AnimatePresence>
 );
+
 
 export default ItineraryPage;

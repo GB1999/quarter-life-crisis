@@ -91,29 +91,10 @@ body {
 .subtitle {
   position: absolute;
   bottom: 10px;
-  vertical-align: middle;
   width: 80%;
-}
-
-.explanation-page{
-  position: absolute;
-  height: 100vh;
-  background-color: #F3E7EF;
-  z-index: 10;
-}
-
-.explanation-description{
-  margin: '20px';
-  overflow-y: 'auto';
-  display: 'flex'; 
-  justify-content: 'center';
-}
-
-.explanation-quote {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center; /* Optional: If you want the text inside to be centered */
 }
 
 .animated-text-row {
@@ -143,14 +124,21 @@ body {
 }
 
 .itinerary-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  max-width:100%;
+  max-height:100%;
+  min-height: 100%;
   position: absolute;
   text-align: center;
   font-size: 5rem;
   margin-bottom: 20px;
   color: rgb(255, 255, 255);
   z-index: 12;
+  overflow-x: hidden; 
+  transform: translate3d(0, 0, 0); /* Enable hardware acceleration */
 }
 .itinerary-list{
   display: flex;
@@ -177,6 +165,24 @@ body {
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 13;
 }
+
+.itinerary-item.left .itinerary-image-container {
+  order: 1; /* Image on the left */
+}
+
+.itinerary-item.left .itinerary-details {
+  order: 2;
+}
+
+.itinerary-item.right .itinerary-image-container {
+  order: 2; /* Image on the right */
+}
+
+.itinerary-item.right .itinerary-details {
+  order: 1;
+}
+
+
 .itinerary-item h1{
   text-align: center;
   font-size: 1rem;
@@ -264,7 +270,6 @@ a {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  overflow: hidden;/* Ensure the container's height is determined by its content */
   box-shadow:  10px 5px 5px black;
   z-index: 20;
 }
@@ -284,7 +289,7 @@ a {
   object-fit: fill; /* Ensures the image covers the container while maintaining aspect ratio */
 }
 
-
+/* App.css */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -301,12 +306,17 @@ a {
 
 .modal {
   background: white;
-  padding: 20px;
+  padding: 2vw;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1001;
-  width: 80%; /* Set width to 80% for responsiveness */
-  max-width: 600px; 
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal h2 {
+  font-size:4vw;
+  margin-bottom: 1vw;
 }
 
 .modal form {
@@ -314,38 +324,85 @@ a {
   flex-direction: column;
 }
 
+.modal .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vw;
+}
+
 .modal label {
-  margin-bottom: 10px;
+  font-size: 3vw;
+  flex: 1;
+  margin-right: 1vw;
+  display: flex;
+  align-items: center;
 }
 
-.modal input[type="text"],
-
-.modal select {
-  padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.modal input,
+.modal select,
+.modal button {
+  font-size: 2vw;
+  padding: 0.5vw;
+  flex: 2;
+  width: 100%; /* Ensure inputs use all available horizontal space */
+  box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
-.modal input[type="checkbox"] {
-  margin-right: 5px;
+.modal .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vw;
 }
 
 .modal button {
-  padding: 10px;
-  margin-top: 10px;
+  padding: 1vw 2vw;
   cursor: pointer;
+  margin-top: 1vw;
 }
 
+
 .modal button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #000000;
   color: white;
   border: none;
 }
 
 .modal button[type="button"] {
-  background-color: #f44336;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1rem solid rgb(0, 0, 0) 1px;
+}
+
+.event-details-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: center; 
+}
+
+.event-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.date {
+  font-size: 6vw; /* Adjust size as needed */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.time, .dress-code {
+  font-size: 3vw; /* Adjust size as needed */
+  margin-bottom: 5px;
+}
+
+.map {
+  flex: 1;
+  padding: 20px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
