@@ -7,7 +7,7 @@ const TOTAL_FRAMES = 30; // Total number of frames in your main image sequence
 const TITLE_FRAMES = 4; // Total number of frames for the title sequences
 const TORN_BACKGROUND_TOTAL_FRAMES = 17; // Total frames for torn background
 const TORN_BACKGROUND_LOOP_FRAMES = 3; // Number of frames to loop for the torn background
-const FRAME_RATE = 500; // Frame rate in milliseconds (500 ms = 0.5 seconds)
+const FRAME_RATE = 300; // Frame rate in milliseconds (500 ms = 0.5 seconds)
 const SUBTITLE_FRAMES = 3;
 const padZero = (number, length) => {
   let str = '' + number;
@@ -22,16 +22,22 @@ const getFramePath = (sequenceName, frameNumber) => {
   return `images/${sequenceName}/${sequenceName}_${frameNumber}.png`;
 };
 
-const getLoopedFrame = (currentFrame, totalFrames, loopFrames) => {
-  if (loopFrames === 0) {
-    return (currentFrame % totalFrames) + 1;
+const getLoopedFrame = (currentFrame, totalFrames, loopFrames, delayFrames = 0) => {
+  const adjustedFrame = currentFrame - delayFrames;
+  if (adjustedFrame < 0) {
+    return null; // Indicate the frame should not be shown
   }
-  if (currentFrame >= totalFrames - loopFrames) {
-    return (currentFrame % loopFrames) + (totalFrames - loopFrames) + 1;
-  }
-  return (currentFrame % totalFrames) + 1;
-};
 
+  if (loopFrames === 0) {
+    return (adjustedFrame % totalFrames) + 1;
+  }
+
+  if (adjustedFrame >= totalFrames - loopFrames) {
+    return (adjustedFrame % loopFrames) + (totalFrames - loopFrames) + 1;
+  }
+
+  return (adjustedFrame % totalFrames) + 1;
+};
 
 function App() {
   // let {scrollYProgress}= useScroll();
@@ -79,6 +85,12 @@ function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+  const portraitFrame = getLoopedFrame(currentFrame, TOTAL_FRAMES, 4, TORN_BACKGROUND_TOTAL_FRAMES + 2);
+  const quarterTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 2);
+  const lifeTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 4);
+  const crisisTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 6);
+  const subtitleFrame = getLoopedFrame(currentFrame, SUBTITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 8);
+
   return (
     <div className="container">
       <motion.div className="grain-overlay" style={{
@@ -87,52 +99,62 @@ function HomePage() {
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
       }} animate={controls}></motion.div>
-      <div className="portrait-container">
-        <motion.img 
-          src={getFramePath('portrait-sequence', getLoopedFrame(currentFrame, TOTAL_FRAMES, 4))} 
-          alt="Portrait Sequence" 
-          className="portrait"
-        />
-      </div>
+
+      {portraitFrame && (
+        <div className="portrait-container">
+          <motion.img 
+            src={getFramePath('portrait-sequence', portraitFrame)} 
+            alt="Portrait Sequence" 
+            className="portrait"
+          />
+        </div>
+      )}
+
       <div className="foreground">
         <motion.div className="foreground-image-wrapper">
           <img src={getFramePath('torn-background-sequence', getLoopedFrame(currentFrame, TORN_BACKGROUND_TOTAL_FRAMES, TORN_BACKGROUND_LOOP_FRAMES))} alt="Torn Background" className="foreground-image"/>
         </motion.div>
-        <div className="text-container">
-          <motion.img 
-            src={getFramePath('title-quarter-sequence', getLoopedFrame(currentFrame, TITLE_FRAMES, 0))} 
-            alt="Quarter Title" 
-            className="title-image title-quarter"
-            style={{ left: xTransform }}
-          />
-          
-          <motion.img 
-            src={getFramePath('title-life-sequence', getLoopedFrame(currentFrame, TITLE_FRAMES, 0))} 
-            alt="Life Title" 
-            className="title-image title-life"
-            style={{ left: xTransformleft }}
-          />
-          <motion.img 
-            src={getFramePath('title-crisis-sequence', getLoopedFrame(currentFrame, TITLE_FRAMES, 0))} 
-            alt="Crisis Title" 
-            className="title-image title-crisis"
-            style={{ left: xTransform }}
-          />
-          <motion.img 
-            src={getFramePath('subtitle-birthday-sequence', getLoopedFrame(currentFrame, SUBTITLE_FRAMES, 0))} 
-            alt="Sub Title" 
-            className=" subtitle"
-          />
 
-          
-        
+        <div className="text-container">
+          {quarterTitleFrame && (
+            <motion.img 
+              src={getFramePath('title-quarter-sequence', quarterTitleFrame)} 
+              alt="Quarter Title" 
+              className="title-image title-quarter"
+              style={{ left: xTransform }}
+            />
+          )}
+
+          {lifeTitleFrame && (
+            <motion.img 
+              src={getFramePath('title-life-sequence', lifeTitleFrame)} 
+              alt="Life Title" 
+              className="title-image title-life"
+              style={{ left: xTransformleft }}
+            />
+          )}
+
+          {crisisTitleFrame && (
+            <motion.img 
+              src={getFramePath('title-crisis-sequence', crisisTitleFrame)} 
+              alt="Crisis Title" 
+              className="title-image title-crisis"
+              style={{ left: xTransform }}
+            />
+          )}
+
+          {subtitleFrame && (
+            <motion.img 
+              src={getFramePath('subtitle-birthday-sequence', subtitleFrame)} 
+              alt="Sub Title" 
+              className="subtitle"
+            />
+          )}
         </div>
-        
-        
       </div>
     </div>
   );
-}
+};
 
 
  
