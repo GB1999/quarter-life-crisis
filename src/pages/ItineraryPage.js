@@ -78,7 +78,7 @@ const ItineraryPage = () => {
       while (true) {
         await controls.start({
           backgroundPosition: `${Math.random() * 400 - 200}px ${Math.random() * 400 - 200}px`,
-          
+
           transition: { duration: 0.01, ease: "linear" } // Adjust duration for speed
         });
         await new Promise(resolve => setTimeout(resolve, 300)); // Adjust delay for frame rate
@@ -89,7 +89,7 @@ const ItineraryPage = () => {
   }, [controls]);
 
   return (
-    <div style={{ position: 'relative', height: '200vh', width: '100%' }}>
+    <div style={{ position: 'relative', height: 'auto', width: '100%' }}>
       <div className="itinerary-background"></div>
 
       <motion.div className="itinerary-container" style={{
@@ -97,43 +97,43 @@ const ItineraryPage = () => {
         backgroundPosition: 'bottom',
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
-      }} animate={controls}> 
-     <EventDetails></EventDetails>
+      }} animate={controls}>
+        <EventDetails></EventDetails>
         <div className="itinerary-container-title">
           <p>ITINERARY</p>
         </div>
         <div className='itinerary-list'>
-        <ItineraryItem
-          title="Music Video"
-          startTime="1:00 PM"
-          endTime="5:00 PM"
-          imageSrc="images/group_pic.JPG"
-        />
+          <ItineraryItem
+            title="Music Video"
+            startTime="8:00 PM"
+            endTime="9:00 PM"
+            imageSrc="images/group_pic.JPG"
+          />
 
-        <ItineraryItem
-          title="Ride On Yaht"
-          startTime="1:00 PM"
-          endTime="5:00 PM"
-          imageSrc="images/photography.png"
-          imagePosition="right"
-        />
+          <ItineraryItem
+            title="Ride On Yaht"
+            startTime="1:00 PM"
+            endTime="5:00 PM"
+            imageSrc="images/photography.png"
+            imagePosition="right"
+          />
 
-        <ItineraryItem
-          title="PreGame & Barbecue"
-          startTime="6:00 PM"
-          endTime="10:00 PM"
-          imageSrc="images/ramen.png"
-        />
+          <ItineraryItem
+            title="PreGame & Barbecue"
+            startTime="6:00 PM"
+            endTime="10:00 PM"
+            imageSrc="images/ramen.png"
+          />
 
-        <ItineraryItem
-          title="LateNite at Barb's"
-          startTime="10:00 PM"
-          endTime="2:00 AM"
-          imageSrc="images/barbs.png"
-          imagePosition="left"
-        />
+          <ItineraryItem
+            title="LateNite at Barb's"
+            startTime="10:00 PM"
+            endTime="2:00 AM"
+            imageSrc="images/barbs.png"
+            imagePosition="left"
+          />
         </div>
-        
+
         <div className='divider'></div>
         <RSVPButton onClick={toggleModal} />
       </motion.div>
@@ -152,17 +152,9 @@ const EventDetails = () => {
         <div className="time">8:00 PM - 11:00 PM</div>
         <div className="dress-code">Dress Code: Cocktail</div>
       </div>
-      <div className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0868396343423!2d144.96316!3d-37.8136119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ceed2!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1648797356123!5m2!1sen!2sus"
-          width="400"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          title="Event Location"
-        ></iframe>
-      </div>
+      <div style="width: 100%" className="map">
+        <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=321%20West%20Ben%20White,%20106A,%20Austin,%20TX%2078704+(PhotoGroup)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+        </iframe></div>
     </div>
   );
 };
@@ -199,12 +191,9 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => (
                 <option value="no">No</option>
               </select>
             </div>
-            <div className="form-group">
-              <label>
-              Bringing a plus one
-                <input type="checkbox" name="plusOne" />
-                
-              </label>
+            <div className="form-group label-checkbox">
+              <label>Bringing a plus one</label>
+              <input type="checkbox" name="plusOne" />
             </div>
             <div className="form-group">
               <button type="submit">Submit</button>
