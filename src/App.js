@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {motion, useScroll, useMotionValue, useAnimation, useTransform} from 'framer-motion'
+import { motion, useScroll, useMotionValue, useAnimation, useTransform } from 'framer-motion'
 import './App.css';
+import usePreloadImages from './hooks/usePreloadImages';
 import ItineraryPage from './pages/ItineraryPage';
 
 const TOTAL_FRAMES = 30; // Total number of frames in your main image sequence
@@ -9,12 +10,25 @@ const TORN_BACKGROUND_TOTAL_FRAMES = 17; // Total frames for torn background
 const TORN_BACKGROUND_LOOP_FRAMES = 3; // Number of frames to loop for the torn background
 const FRAME_RATE = 300; // Frame rate in milliseconds (500 ms = 0.5 seconds)
 const SUBTITLE_FRAMES = 3;
-const padZero = (number, length) => {
-  let str = '' + number;
-  while (str.length < length) {
-    str = '0' + str;
+
+const basePath = 'images';
+const sequences = [
+  { name: 'torn-background-sequence', start: 1, end: TORN_BACKGROUND_TOTAL_FRAMES },
+  { name: 'portrait-sequence', start: 1, end: TOTAL_FRAMES },
+  { name: 'title-crisis-sequence', start: 1, end: TITLE_FRAMES },
+  { name: 'title-quarter-sequence', start: 1, end: TITLE_FRAMES },
+  { name: 'title-life-sequence', start: 1, end: TITLE_FRAMES },
+  { name: 'subtitle-birthday-sequence', start: 1, end: 3 },
+  // Add more sequences as needed
+];
+
+const generateImageUrls = (basePath, sequenceName, startFrame, endFrame, fileExtension = 'png') => {
+  const urls = [];
+  for (let i = startFrame; i <= endFrame; i++) {
+    const url = `${basePath}/${sequenceName}/${sequenceName}_${i}.${fileExtension}`;
+    urls.push(url);
   }
-  return str;
+  return urls;
 };
 
 //use relative paths
@@ -44,20 +58,24 @@ function App() {
   // let y = useTransform{scrollYProgress, }
   return (
     <div >
-     <HomePage/>
-
-     <ItineraryPage/>
+      <HomePage />
+      <ItineraryPage />
 
     </div>
   );
 }
 
 function HomePage() {
+  const imageUrls = sequences.flatMap(sequence =>
+    generateImageUrls(basePath, sequence.name, sequence.start, sequence.end)
+  );
+  const loaded = usePreloadImages(imageUrls);
+
   const [currentFrame, setCurrentFrame] = useState(0);
   const ref = useRef(null)
-  const {scrollYProgress} = useScroll();
+  const { scrollYProgress } = useScroll();
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, 1500])
-  const xTransformleft  = useTransform(scrollYProgress, [0, 1], [0, -1500])
+  const xTransformleft = useTransform(scrollYProgress, [0, 1], [0, -1500])
 
   const controls = useAnimation();
 
@@ -66,7 +84,7 @@ function HomePage() {
       while (true) {
         await controls.start({
           backgroundPosition: `${Math.random() * 400 - 200}px ${Math.random() * 400 - 200}px`,
-          
+
           transition: { duration: 0.01, ease: "linear" } // Adjust duration for speed
         });
         await new Promise(resolve => setTimeout(resolve, 300)); // Adjust delay for frame rate
@@ -79,7 +97,7 @@ function HomePage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFrame((prevFrame) => (prevFrame + 1) );
+      setCurrentFrame((prevFrame) => (prevFrame + 1));
     }, FRAME_RATE);
 
     return () => clearInterval(interval);
@@ -90,6 +108,13 @@ function HomePage() {
   const lifeTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 4);
   const crisisTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 6);
   const subtitleFrame = getLoopedFrame(currentFrame, SUBTITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 8);
+
+  if (!loaded) {
+    <div className="spinner">
+      <div className="double-bounce1"></div>
+      <div className="double-bounce2"></div>
+    </div>
+  }
 
   return (
     <div className="container">
@@ -102,9 +127,9 @@ function HomePage() {
 
       {portraitFrame && (
         <div className="portrait-container">
-          <motion.img 
-            src={getFramePath('portrait-sequence', portraitFrame)} 
-            alt="Portrait Sequence" 
+          <motion.img
+            src={getFramePath('portrait-sequence', portraitFrame)}
+            alt="Portrait Sequence"
             className="portrait"
           />
         </div>
@@ -112,41 +137,41 @@ function HomePage() {
 
       <div className="foreground">
         <motion.div className="foreground-image-wrapper">
-          <img src={getFramePath('torn-background-sequence', getLoopedFrame(currentFrame, TORN_BACKGROUND_TOTAL_FRAMES, TORN_BACKGROUND_LOOP_FRAMES))} alt="Torn Background" className="foreground-image"/>
+          <img src={getFramePath('torn-background-sequence', getLoopedFrame(currentFrame, TORN_BACKGROUND_TOTAL_FRAMES, TORN_BACKGROUND_LOOP_FRAMES))} alt="Torn Background" className="foreground-image" />
         </motion.div>
 
         <div className="text-container">
           {quarterTitleFrame && (
-            <motion.img 
-              src={getFramePath('title-quarter-sequence', quarterTitleFrame)} 
-              alt="Quarter Title" 
+            <motion.img
+              src={getFramePath('title-quarter-sequence', quarterTitleFrame)}
+              alt="Quarter Title"
               className="title-image title-quarter"
               style={{ left: xTransform }}
             />
           )}
 
           {lifeTitleFrame && (
-            <motion.img 
-              src={getFramePath('title-life-sequence', lifeTitleFrame)} 
-              alt="Life Title" 
+            <motion.img
+              src={getFramePath('title-life-sequence', lifeTitleFrame)}
+              alt="Life Title"
               className="title-image title-life"
               style={{ left: xTransformleft }}
             />
           )}
 
           {crisisTitleFrame && (
-            <motion.img 
-              src={getFramePath('title-crisis-sequence', crisisTitleFrame)} 
-              alt="Crisis Title" 
+            <motion.img
+              src={getFramePath('title-crisis-sequence', crisisTitleFrame)}
+              alt="Crisis Title"
               className="title-image title-crisis"
               style={{ left: xTransform }}
             />
           )}
 
           {subtitleFrame && (
-            <motion.img 
-              src={getFramePath('subtitle-birthday-sequence', subtitleFrame)} 
-              alt="Sub Title" 
+            <motion.img
+              src={getFramePath('subtitle-birthday-sequence', subtitleFrame)}
+              alt="Sub Title"
               className="subtitle"
             />
           )}
@@ -157,7 +182,7 @@ function HomePage() {
 };
 
 
- 
+
 
 const textVariants = {
   hidden: { x: '50px', opacity: 0 },
@@ -199,32 +224,33 @@ const ImageWithRoundedCorner = () => {
   const { scrollYProgress } = useScroll();
 
   // Define opacity animation based on scroll position
-  const backgroundY = useTransform(scrollYProgress, [0,1], ["%0", "%10"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["%0", "%10"]);
 
   return (
-      <motion.div 
+    <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false }}
-      transition={{type: 'spring', duration: 0.8 , delay:1.5}}
+      transition={{ type: 'spring', duration: 0.8, delay: 1.5 }}
       variants={{
         visible: { y: '0px', opacity: 1 },
-        hidden: { y: '-100px', opacity: 0 }}}
-        >
-          
-          <iframe
-          src='https://www.youtube.com/embed/ZHwVBirqD2s&ab_channel=EltonJohnVEVO'
-          frameborder='0'
-          allow='autoplay;'
-          allowfullscreen
-          title='video'
-          style={{
-              width:"100%",
-              y: backgroundY,
-              borderRadius: '20px 0 0 0' // Only the top-left corner is rounded
-          }}
-          />
-      </motion.div>
+        hidden: { y: '-100px', opacity: 0 }
+      }}
+    >
+
+      <iframe
+        src='https://www.youtube.com/embed/ZHwVBirqD2s&ab_channel=EltonJohnVEVO'
+        frameborder='0'
+        allow='autoplay;'
+        allowfullscreen
+        title='video'
+        style={{
+          width: "100%",
+          y: backgroundY,
+          borderRadius: '20px 0 0 0' // Only the top-left corner is rounded
+        }}
+      />
+    </motion.div>
   );
 };
 
