@@ -53,10 +53,38 @@ const getLoopedFrame = (currentFrame, totalFrames, loopFrames, delayFrames = 0) 
   return (adjustedFrame % totalFrames) + 1;
 };
 
+const useDeviceType = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isMobile;
+};
+
 function App() {
   // let {scrollYProgress}= useScroll();
   // let y = useTransform{scrollYProgress, }
+
+  const isMobile = useDeviceType();
+
+  if (isMobile) {
+    return (
+      <div className="device-warning">
+        For the best experience, please use this website on a mobile device.
+      </div>)
+  }
   return (
+
     <div >
       <HomePage />
       <ItineraryPage />
