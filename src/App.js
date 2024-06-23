@@ -77,10 +77,10 @@ function App() {
 
   const isMobile = useDeviceType();
 
-  if (isMobile) {
+  if (!isMobile) {
     return (
       <div className="device-warning">
-        For the best experience, please use this website on a mobile device.
+        I didn't have time to make a desktop version ...
       </div>)
   }
   return (
