@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useAnimation, useTransform } from 'framer-motion'
 import './App.css';
 import usePreloadImages from './hooks/usePreloadImages';
@@ -183,18 +183,18 @@ function HomePage() {
 
 
 
-const textVariants = {
-  hidden: { x: '50px', opacity: 0 },
-  visible: (i) => ({
-    x: 0,
-    opacity: 1,
-    transition: {
-      delay: i * 0.5, // delay each item by 0.5 seconds
-      type: 'spring',
-      stiffness: 50,
-    },
-  }),
-};
+// const textVariants = {
+//   hidden: { x: '50px', opacity: 0 },
+//   visible: (i) => ({
+//     x: 0,
+//     opacity: 1,
+//     transition: {
+//       delay: i * 0.5, // delay each item by 0.5 seconds
+//       type: 'spring',
+//       stiffness: 50,
+//     },
+//   }),
+// };
 
 // const AnimatedText = () => {
 //   const textArray = ["I'm", 'Still', 'Standing',];
@@ -219,38 +219,38 @@ const textVariants = {
 // };
 
 
-const ImageWithRoundedCorner = () => {
-  const { scrollYProgress } = useScroll();
+// const ImageWithRoundedCorner = () => {
+//   const { scrollYProgress } = useScroll();
 
-  // Define opacity animation based on scroll position
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["%0", "%10"]);
+//   // Define opacity animation based on scroll position
+//   const backgroundY = useTransform(scrollYProgress, [0, 1], ["%0", "%10"]);
 
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false }}
-      transition={{ type: 'spring', duration: 0.8, delay: 1.5 }}
-      variants={{
-        visible: { y: '0px', opacity: 1 },
-        hidden: { y: '-100px', opacity: 0 }
-      }}
-    >
+//   return (
+//     <motion.div
+//       initial="hidden"
+//       whileInView="visible"
+//       viewport={{ once: false }}
+//       transition={{ type: 'spring', duration: 0.8, delay: 1.5 }}
+//       variants={{
+//         visible: { y: '0px', opacity: 1 },
+//         hidden: { y: '-100px', opacity: 0 }
+//       }}
+//     >
 
-      <iframe
-        src='https://www.youtube.com/embed/ZHwVBirqD2s&ab_channel=EltonJohnVEVO'
-        frameborder='0'
-        allow='autoplay;'
-        allowfullscreen
-        title='video'
-        style={{
-          width: "100%",
-          y: backgroundY,
-          borderRadius: '20px 0 0 0' // Only the top-left corner is rounded
-        }}
-      />
-    </motion.div>
-  );
-};
+//       <iframe
+//         src='https://www.youtube.com/embed/ZHwVBirqD2s&ab_channel=EltonJohnVEVO'
+//         frameborder='0'
+//         allow='autoplay;'
+//         allowfullscreen
+//         title='video'
+//         style={{
+//           width: "100%",
+//           y: backgroundY,
+//           borderRadius: '20px 0 0 0' // Only the top-left corner is rounded
+//         }}
+//       />
+//     </motion.div>
+//   );
+// };
 
 export default App;

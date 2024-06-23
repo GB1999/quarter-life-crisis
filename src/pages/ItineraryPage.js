@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useAnimation, useViewportScroll, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
-import useWindowSize from '../hooks/useWindowSize';
+// import useWindowSize from '../hooks/useWindowSize';
 
 const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
   const ref = useRef();
@@ -62,8 +62,6 @@ const RSVPButton = ({ onClick }) => (
 );
 
 const ItineraryPage = () => {
-  const { scrollY } = useViewportScroll();
-  const y = useMotionValue(scrollY);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const controls = useAnimation();
 
