@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
-import { db } from './firebase'; // Import Firestore instance
+import { db } from '../firebase'; // Import Firestore instance
 
 // import useWindowSize from '../hooks/useWindowSize';
 
