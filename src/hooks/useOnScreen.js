@@ -8,12 +8,16 @@ const useOnScreen = (ref) => {
       ([entry]) => setIntersecting(entry.isIntersecting),
       { threshold: 0.5 } // Adjust the threshold as needed
     );
-    if (ref.current) {
-      observer.observe(ref.current);
+
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
+
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [ref]);
