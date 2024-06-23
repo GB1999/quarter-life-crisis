@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
+import { db } from './firebase'; // Import Firestore instance
+
 // import useWindowSize from '../hooks/useWindowSize';
 
 const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
@@ -157,7 +159,33 @@ const EventDetails = () => {
   );
 };
 
-const RSVPModal = ({ isModalOpen, toggleModal }) => (
+const RSVPModal = ({ isModalOpen, toggleModal }) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [attendance, setAttendance] = useState('yes');
+  const [plusOne, setPlusOne] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await db.collection('rsvps').add({
+        firstName,
+        lastName,
+        attendance,
+        plusOne,
+      });
+      setLoading(false);
+      toggleModal();
+    } catch (err) {
+      setError('Failed to submit RSVP. Please try again.');
+      setLoading(false);
+    }
+  };
+
   <AnimatePresence>
     {isModalOpen && (
       <motion.div
@@ -176,35 +204,45 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => (
           <form>
             <div className="form-group">
               <label>First Name:</label>
-              <input type="text" name="firstName" />
+              <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Last Name:</label>
-              <input type="text" name="lastName" />
+              <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Will you be attending?</label>
-              <select name="attendance">
+              <select
+                name="attendance"
+                value={attendance}
+                onChange={(e) => setAttendance(e.target.value)}
+                required
+              >
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </div>
             <div className="form-group label-checkbox">
               <label>Bringing a plus one</label>
-              <input type="checkbox" name="plusOne" />
+              <input
+                type="checkbox"
+                name="plusOne"
+                checked={plusOne}
+                onChange={(e) => setPlusOne(e.target.checked)}
+              />
             </div>
-            <div className="form-group">
-              <button type="submit">Submit</button>
-            </div>
-            <div className="form-group">
-              <button type="button" onClick={toggleModal}>Cancel</button>
-            </div>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}
+            </button>
+            <button type="button" onClick={toggleModal}>
+              Cancel
+            </button>
           </form>
         </motion.div>
       </motion.div>
     )}
   </AnimatePresence>
-);
+}
 
 
 export default ItineraryPage;
