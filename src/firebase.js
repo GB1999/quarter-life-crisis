@@ -1,7 +1,6 @@
 // src/firebase.js
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 const firebaseConfig = {
     apiKey: "AIzaSyBQhqAiO2_xDnNhWepTWy-Fqr7mi3bAsOM",
     authDomain: "quarter-life-crisis-c0e7f.firebaseapp.com",
@@ -13,12 +12,8 @@ const firebaseConfig = {
     measurementId: "G-PLCQ0YEPT1"
 };
 // Initialize Firebase
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-} else {
-    firebase.app(); // if already initialized, use that one
-}
+const app = initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const db = getDatabase(app);
 
 export { db };
