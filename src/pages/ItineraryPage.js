@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform, useAnimation, useViewportScroll, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useAnimation, useViewportScroll, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
 import useWindowSize from '../hooks/useWindowSize';
 
 const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
   const ref = useRef();
   const isVisible = useOnScreen(ref);
-  const windowSize = useWindowSize();
-  const isMobile = windowSize.width <= 768;
+  // const windowSize = useWindowSize();
+  // const isMobile = windowSize.width <= 768;
   const controls = useAnimation();
 
   useEffect(() => {
@@ -152,8 +152,8 @@ const EventDetails = () => {
         <div className="time">8:00 PM - 11:00 PM</div>
         <div className="dress-code">Dress Code: Cocktail</div>
       </div>
-      <div style="width: 100%" className="map">
-        <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=321%20West%20Ben%20White,%20106A,%20Austin,%20TX%2078704+(PhotoGroup)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+      <div className="map">
+        <iframe title="google-map-directions" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=321%20West%20Ben%20White,%20106A,%20Austin,%20TX%2078704+(PhotoGroup)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
         </iframe></div>
     </div>
   );

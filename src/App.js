@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useMotionValue, useAnimation, useTransform } from 'framer-motion'
+import { motion, useScroll, useAnimation, useTransform } from 'framer-motion'
 import './App.css';
 import usePreloadImages from './hooks/usePreloadImages';
 import ItineraryPage from './pages/ItineraryPage';
@@ -72,7 +72,6 @@ function HomePage() {
   const loaded = usePreloadImages(imageUrls);
 
   const [currentFrame, setCurrentFrame] = useState(0);
-  const ref = useRef(null)
   const { scrollYProgress } = useScroll();
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, 1500])
   const xTransformleft = useTransform(scrollYProgress, [0, 1], [0, -1500])
@@ -197,27 +196,27 @@ const textVariants = {
   }),
 };
 
-const AnimatedText = () => {
-  const textArray = ["I'm", 'Still', 'Standing',];
+// const AnimatedText = () => {
+//   const textArray = ["I'm", 'Still', 'Standing',];
 
-  return (
-    <div className="animated-text-row">
-      {textArray.map((text, index) => (
-        <motion.h1
-          key={index}
-          className="italic text-white text-11xl md:text-9xl z-10 "
-          custom={index}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }} // Configure viewport settings here
-          variants={textVariants}
-        >
-          {text}
-        </motion.h1>
-      ))}
-    </div>
-  );
-};
+//   return (
+//     <div className="animated-text-row">
+//       {textArray.map((text, index) => (
+//         <motion.h1
+//           key={index}
+//           className="italic text-white text-11xl md:text-9xl z-10 "
+//           custom={index}
+//           initial="hidden"
+//           whileInView="visible"
+//           viewport={{ once: true, amount: 0.5 }} // Configure viewport settings here
+//           variants={textVariants}
+//         >
+//           {text}
+//         </motion.h1>
+//       ))}
+//     </div>
+//   );
+// };
 
 
 const ImageWithRoundedCorner = () => {
