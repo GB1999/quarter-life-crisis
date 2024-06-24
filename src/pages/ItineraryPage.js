@@ -172,10 +172,10 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
     setLoading(true);
 
     const rsvpData = {
-      firstName,
-      lastName,
-      attendance,
-      plusOne,
+      firstName: firstName,
+      lastName: lastName,
+      attendence: attendance,
+      plusOne: plusOne,
     };
 
     try {

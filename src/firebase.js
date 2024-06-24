@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const submitRsvp = async (rsvpData) => {
+    console.log(rsvpData);
     const newRsvpKey = push(child(ref(db), 'rsvps')).key;
     console.log(newRsvpKey);
     const updates = {};
