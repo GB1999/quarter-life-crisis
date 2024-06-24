@@ -19,14 +19,7 @@ const submitRsvp = async (rsvpData) => {
 
     // Define the collection and document data
     const rsvpCollection = collection(db, 'rsvps');
-
-
-    // Add the document to the collection
-    const newDocRef = await addDoc(rsvpCollection, rsvpData);
-
-    // Log the document ID
-    console.log('New document added with ID:', newDocRef.id);
-
+    await addDoc(rsvpCollection, rsvpData);
 };
 
 export { db, submitRsvp };
