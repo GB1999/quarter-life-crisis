@@ -1,6 +1,6 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, child, push, set } from 'firebase/database';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 const firebaseConfig = {
     apiKey: "AIzaSyBQhqAiO2_xDnNhWepTWy-Fqr7mi3bAsOM",
     authDomain: "quarter-life-crisis-c0e7f.firebaseapp.com",
@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const db = getFirestore(app);
 
 const submitRsvp = async (rsvpData) => {
 
