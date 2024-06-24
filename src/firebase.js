@@ -1,6 +1,6 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, child, push, update } from 'firebase/database';
+import { getDatabase, ref, child, push, set } from 'firebase/database';
 const firebaseConfig = {
     apiKey: "AIzaSyBQhqAiO2_xDnNhWepTWy-Fqr7mi3bAsOM",
     authDomain: "quarter-life-crisis-c0e7f.firebaseapp.com",
@@ -17,9 +17,10 @@ const db = getDatabase(app);
 
 const submitRsvp = async (rsvpData) => {
     const newRsvpKey = push(child(ref(db), 'rsvps')).key;
+    console.log(newRsvpKey);
     const updates = {};
     updates['/rsvps/' + newRsvpKey] = rsvpData;
-    await update(ref(db), updates);
+    await set(ref(db), updates);
 };
 
 export { db, submitRsvp };
