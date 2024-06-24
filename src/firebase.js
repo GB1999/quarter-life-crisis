@@ -16,12 +16,17 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const submitRsvp = async (rsvpData) => {
-    console.log(rsvpData);
-    const newRsvpKey = push(child(ref(db), 'rsvps')).key;
-    console.log(newRsvpKey);
-    const updates = {};
-    updates['/rsvps/' + newRsvpKey] = rsvpData;
-    await set(ref(db), updates);
+
+    // Define the collection and document data
+    const rsvpCollection = collection(db, 'rsvps');
+
+
+    // Add the document to the collection
+    const newDocRef = await addDoc(rsvpCollection, rsvpData);
+
+    // Log the document ID
+    console.log('New document added with ID:', newDocRef.id);
+
 };
 
 export { db, submitRsvp };
