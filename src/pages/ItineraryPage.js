@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
-import { db } from '../firebase'; // Import Firestore instance
+import { submitRsvp } from './firebase'; // Import the submitRsvp function
+
+
 
 // import useWindowSize from '../hooks/useWindowSize';
 
@@ -171,21 +173,23 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
     e.preventDefault();
     setLoading(true);
 
+    const rsvpData = {
+      firstName,
+      lastName,
+      attendance,
+      plusOne,
+    };
+
     try {
-      await db.collection('rsvps').add({
-        firstName,
-        lastName,
-        attendance,
-        plusOne,
-      });
+      await submitRsvp(rsvpData);
       setLoading(false);
       toggleModal();
     } catch (err) {
-      console.log(err)
       setError('Failed to submit RSVP. Please try again.');
       setLoading(false);
     }
   };
+
   return (
     <AnimatePresence>
       {isModalOpen && (
