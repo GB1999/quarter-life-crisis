@@ -21,9 +21,7 @@ const submitRsvp = async (rsvpData) => {
     console.log(rsvpData);
     const newRsvpKey = push(child(ref(db), 'rsvps')).key;
     console.log(newRsvpKey);
-    const updates = {};
-    updates['/rsvps/' + newRsvpKey] = rsvpData;
-    await set(ref(db), updates);
+    await set(ref(db, 'rsvps/' + newRsvpKey), rsvpData);
 };
 
 export { db, submitRsvp };
