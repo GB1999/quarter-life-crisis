@@ -183,6 +183,7 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
       setLoading(false);
       toggleModal();
     } catch (err) {
+      console.log(err);
       setError('Failed to submit RSVP. Please try again.');
       setLoading(false);
     }
