@@ -185,64 +185,65 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
       setLoading(false);
     }
   };
-
-  <AnimatePresence>
-    {isModalOpen && (
-      <motion.div
-        className="modal-backdrop"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
+  return (
+    <AnimatePresence>
+      {isModalOpen && (
         <motion.div
-          className="modal"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.8, opacity: 0 }}
+          className="modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          <h2>RSVP</h2>
-          {error && <p className="error">{error}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>First Name:</label>
-              <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-            </div>
-            <div className="form-group">
-              <label>Last Name:</label>
-              <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-            </div>
-            <div className="form-group">
-              <label>Will you be attending?</label>
-              <select
-                name="attendance"
-                value={attendance}
-                onChange={(e) => setAttendance(e.target.value)}
-                required
-              >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-            <div className="form-group label-checkbox">
-              <label>Bringing a plus one</label>
-              <input
-                type="checkbox"
-                name="plusOne"
-                checked={plusOne}
-                onChange={(e) => setPlusOne(e.target.checked)}
-              />
-            </div>
-            <button type="submit" disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit'}
-            </button>
-            <button type="button" onClick={toggleModal}>
-              Cancel
-            </button>
-          </form>
+          <motion.div
+            className="modal"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+          >
+            <h2>RSVP</h2>
+            {error && <p className="error">{error}</p>}
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>First Name:</label>
+                <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label>Last Name:</label>
+                <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+              </div>
+              <div className="form-group">
+                <label>Will you be attending?</label>
+                <select
+                  name="attendance"
+                  value={attendance}
+                  onChange={(e) => setAttendance(e.target.value)}
+                  required
+                >
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div className="form-group label-checkbox">
+                <label>Bringing a plus one</label>
+                <input
+                  type="checkbox"
+                  name="plusOne"
+                  checked={plusOne}
+                  onChange={(e) => setPlusOne(e.target.checked)}
+                />
+              </div>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Submitting...' : 'Submit'}
+              </button>
+              <button type="button" onClick={toggleModal}>
+                Cancel
+              </button>
+            </form>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
+      )}
+    </AnimatePresence>
+  )
 }
 
 
