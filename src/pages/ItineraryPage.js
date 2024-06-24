@@ -201,7 +201,8 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
           exit={{ scale: 0.8, opacity: 0 }}
         >
           <h2>RSVP</h2>
-          <form>
+          {error && <p className="error">{error}</p>}
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>First Name:</label>
               <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
