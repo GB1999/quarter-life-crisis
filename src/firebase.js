@@ -1,6 +1,6 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getDatabase, ref, child, push, set } from 'firebase/database';
 const firebaseConfig = {
     apiKey: "AIzaSyBQhqAiO2_xDnNhWepTWy-Fqr7mi3bAsOM",
     authDomain: "quarter-life-crisis-c0e7f.firebaseapp.com",
@@ -13,13 +13,17 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
 const submitRsvp = async (rsvpData) => {
 
-    // Define the collection and document data
-    const rsvpCollection = collection(db, 'rsvps');
-    await addDoc(rsvpCollection, rsvpData);
+
+    console.log(rsvpData);
+    const newRsvpKey = push(child(ref(db), 'rsvps')).key;
+    console.log(newRsvpKey);
+    const updates = {};
+    updates['/rsvps/' + newRsvpKey] = rsvpData;
+    await set(ref(db), updates);
 };
 
 export { db, submitRsvp };
