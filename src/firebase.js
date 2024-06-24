@@ -16,10 +16,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const submitRsvp = async (rsvpData) => {
-    const newRsvpKey = push(child(ref(realTimeDb), 'rsvps')).key;
+    const newRsvpKey = push(child(ref(db), 'rsvps')).key;
     const updates = {};
     updates['/rsvps/' + newRsvpKey] = rsvpData;
-    await update(ref(realTimeDb), updates);
+    await update(ref(db), updates);
 };
 
 export { db, submitRsvp };

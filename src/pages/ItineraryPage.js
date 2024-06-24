@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
-import { submitRsvp } from './firebase'; // Import the submitRsvp function
-
-
+import { submitRsvp } from '../firebase'; // Import the submitRsvp function
 
 // import useWindowSize from '../hooks/useWindowSize';
 
