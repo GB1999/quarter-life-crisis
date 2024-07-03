@@ -231,7 +231,7 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
             <motion.img
               src={getFramePath('rsvp-sequence', rsvpFrame)}
               alt="RSVP"
-              className="subtitle"
+              className="rsvp-title"
             />
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
