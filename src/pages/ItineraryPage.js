@@ -206,6 +206,12 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
 
   const rsvpFrame = getLoopedFrame(currentFrame, 3, 0, 0);
 
+  if (!loaded) {
+    return <div className="spinner">
+      <div className="double-bounce1"></div>
+      <div className="double-bounce2"></div>
+    </div>
+  }
 
   return (
     <AnimatePresence>

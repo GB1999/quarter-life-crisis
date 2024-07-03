@@ -96,7 +96,7 @@ function HomePage() {
   const subtitleFrame = getLoopedFrame(currentFrame, SUBTITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 8);
 
   if (!loaded) {
-    <div className="spinner">
+    return <div className="spinner">
       <div className="double-bounce1"></div>
       <div className="double-bounce2"></div>
     </div>
