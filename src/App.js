@@ -54,6 +54,8 @@ function HomePage() {
     generateImageUrls(basePath, sequence.name, sequence.start, sequence.end)
   );
   const loaded = usePreloadImages(imageUrls);
+  const { scrollYProgress } = useScroll();
+
 
   const [currentFrame, setCurrentFrame] = useState(0);
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, 1500])
@@ -61,7 +63,6 @@ function HomePage() {
 
   const controls = useAnimation();
   useFrameAnimation(FRAME_RATE, setCurrentFrame);
-  const { scrollYProgress } = useScroll();
 
 
   useEffect(() => {
