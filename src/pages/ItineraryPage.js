@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
+import usePreloadImages from '../hooks/usePreloadImages';
+import useFrameAnimation from '../hooks/useFrameAnimation';
 import { submitRsvp } from '../firebase'; // Import the submitRsvp function
+import { generateImageUrls, getLoopedFrame, getFramePath } from '../utils/animationUtil';
+
 
 // import useWindowSize from '../hooks/useWindowSize';
+
+const FRAME_RATE = 300; // Frame rate in milliseconds (500 ms = 0.5 seconds)
+const basePath = 'images';
 
 const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
   const ref = useRef();
@@ -160,12 +167,20 @@ const EventDetails = () => {
 };
 
 const RSVPModal = ({ isModalOpen, toggleModal }) => {
+  const rsvpSequence = { name: 'torn-background-sequence', start: 1, end: 3 };
+  const [currentFrame, setCurrentFrame] = useState(0);
+  const imageUrls = generateImageUrls(basePath, rsvpSequence.name, rsvpSequence.start, rsvpSequence.end);
+
+  const loaded = usePreloadImages(imageUrls);
+  useFrameAnimation(FRAME_RATE, setCurrentFrame);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [attendance, setAttendance] = useState('yes');
   const [plusOne, setPlusOne] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -189,6 +204,9 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
     }
   };
 
+  const rsvpFrame = getLoopedFrame(currentFrame, 3, 0, 0);
+
+
   return (
     <AnimatePresence>
       {isModalOpen && (
@@ -204,7 +222,11 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
           >
-            <h2>RSVP</h2>
+            <motion.img
+              src={getFramePath('rsvp-sequence', rsvpFrame)}
+              alt="RSVP"
+              className="subtitle"
+            />
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">

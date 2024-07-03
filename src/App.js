@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useAnimation, useTransform } from 'framer-motion'
+import { getFramePath, getLoopedFrame, generateImageUrls } from './utils/animationUtil';
+import { useDeviceType } from './utils/viewportUtil';
 import './App.css';
 import usePreloadImages from './hooks/usePreloadImages';
+import useFrameAnimation from './hooks/useFrameAnimation';
+
 import ItineraryPage from './pages/ItineraryPage';
 
 const TOTAL_FRAMES = 30; // Total number of frames in your main image sequence
@@ -22,54 +26,6 @@ const sequences = [
   // Add more sequences as needed
 ];
 
-const generateImageUrls = (basePath, sequenceName, startFrame, endFrame, fileExtension = 'png') => {
-  const urls = [];
-  for (let i = startFrame; i <= endFrame; i++) {
-    const url = `${basePath}/${sequenceName}/${sequenceName}_${i}.${fileExtension}`;
-    urls.push(url);
-  }
-  return urls;
-};
-
-//use relative paths
-const getFramePath = (sequenceName, frameNumber) => {
-  return `images/${sequenceName}/${sequenceName}_${frameNumber}.png`;
-};
-
-const getLoopedFrame = (currentFrame, totalFrames, loopFrames, delayFrames = 0) => {
-  const adjustedFrame = currentFrame - delayFrames;
-  if (adjustedFrame < 0) {
-    return null; // Indicate the frame should not be shown
-  }
-
-  if (loopFrames === 0) {
-    return (adjustedFrame % totalFrames) + 1;
-  }
-
-  if (adjustedFrame >= totalFrames - loopFrames) {
-    return (adjustedFrame % loopFrames) + (totalFrames - loopFrames) + 1;
-  }
-
-  return (adjustedFrame % totalFrames) + 1;
-};
-
-const useDeviceType = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  return isMobile;
-};
 
 function App() {
   // let {scrollYProgress}= useScroll();
@@ -100,11 +56,13 @@ function HomePage() {
   const loaded = usePreloadImages(imageUrls);
 
   const [currentFrame, setCurrentFrame] = useState(0);
-  const { scrollYProgress } = useScroll();
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, 1500])
   const xTransformleft = useTransform(scrollYProgress, [0, 1], [0, -1500])
 
   const controls = useAnimation();
+  useFrameAnimation(FRAME_RATE, setCurrentFrame);
+  const { scrollYProgress } = useScroll();
+
 
   useEffect(() => {
     const jitter = async () => {
