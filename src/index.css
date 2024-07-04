@@ -408,6 +408,12 @@ a {
   padding: 20px;
 }
 
+.event-details-address{
+  font-size: 6vw;
+  /* Adjust size as needed */
+  font-weight: bold;
+}
+
 .date {
   font-size: 6vw;
   /* Adjust size as needed */
