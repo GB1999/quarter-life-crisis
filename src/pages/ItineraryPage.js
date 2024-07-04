@@ -48,7 +48,7 @@ const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) =
         <div className="itinerary-times">
           <p>{title}</p>
           <div className="divider"></div>
-          <p>{startTime} - {endtime}</p>
+          <p>{startTime} - {endTime}</p>
         </div>
       </div>
     </motion.div>
