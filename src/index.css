@@ -414,6 +414,7 @@ a {
   font-weight: bold;
   text-align: center;
   margin-top: 10px;
+  text-decoration: underline;
 }
 
 .date {
@@ -432,7 +433,7 @@ a {
   font-size: 3vw;
   /* Adjust size as needed */
   margin-bottom: 5px;
-  text-decoration: underline;
+  font-style: italic;
 }
 
 .map {
