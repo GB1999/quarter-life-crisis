@@ -23,6 +23,7 @@ const sequences = [
   { name: 'title-quarter-sequence', start: 1, end: TITLE_FRAMES },
   { name: 'title-life-sequence', start: 1, end: TITLE_FRAMES },
   { name: 'subtitle-birthday-sequence', start: 1, end: 3 },
+  { name: 'rsvp-sequence', start: 1, end: 3 }
   // Add more sequences as needed
 ];
 
@@ -32,6 +33,10 @@ function App() {
   // let y = useTransform{scrollYProgress, }
 
   const isMobile = useDeviceType();
+  const imageUrls = sequences.flatMap(sequence =>
+    generateImageUrls(basePath, sequence.name, sequence.start, sequence.end)
+  );
+  const loaded = usePreloadImages(imageUrls);
 
   if (!isMobile) {
     return (
@@ -39,6 +44,13 @@ function App() {
         I didn't have time to make a desktop version ...
       </div>)
   }
+  if (!loaded) {
+    return <div className="spinner">
+      <div className="double-bounce1"></div>
+      <div className="double-bounce2"></div>
+    </div>
+  }
+
   return (
 
     <div >
@@ -50,10 +62,7 @@ function App() {
 }
 
 function HomePage() {
-  const imageUrls = sequences.flatMap(sequence =>
-    generateImageUrls(basePath, sequence.name, sequence.start, sequence.end)
-  );
-  const loaded = usePreloadImages(imageUrls);
+
   const { scrollYProgress } = useScroll();
 
 
@@ -95,12 +104,7 @@ function HomePage() {
   const crisisTitleFrame = getLoopedFrame(currentFrame, TITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 6);
   const subtitleFrame = getLoopedFrame(currentFrame, SUBTITLE_FRAMES, 0, TORN_BACKGROUND_TOTAL_FRAMES + 8);
 
-  if (!loaded) {
-    return <div className="spinner">
-      <div className="double-bounce1"></div>
-      <div className="double-bounce2"></div>
-    </div>
-  }
+
 
   return (
     <div className="container">

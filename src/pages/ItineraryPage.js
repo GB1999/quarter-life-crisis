@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
-import usePreloadImages from '../hooks/usePreloadImages';
 import useFrameAnimation from '../hooks/useFrameAnimation';
 import { submitRsvp } from '../firebase'; // Import the submitRsvp function
 import { generateImageUrls, getLoopedFrame, getFramePath } from '../utils/animationUtil';
@@ -167,11 +166,8 @@ const EventDetails = () => {
 };
 
 const RSVPModal = ({ isModalOpen, toggleModal }) => {
-  const rsvpSequence = { name: 'torn-background-sequence', start: 1, end: 3 };
   const [currentFrame, setCurrentFrame] = useState(0);
-  const imageUrls = generateImageUrls(basePath, rsvpSequence.name, rsvpSequence.start, rsvpSequence.end);
 
-  const loaded = usePreloadImages(imageUrls);
   useFrameAnimation(FRAME_RATE, setCurrentFrame);
 
   const [firstName, setFirstName] = useState('');
@@ -206,12 +202,6 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
 
   const rsvpFrame = getLoopedFrame(currentFrame, 3, 0, 0);
 
-  if (!loaded) {
-    return <div className="spinner">
-      <div className="double-bounce1"></div>
-      <div className="double-bounce2"></div>
-    </div>
-  }
 
   return (
     <AnimatePresence>
