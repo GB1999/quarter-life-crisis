@@ -412,6 +412,8 @@ a {
   font-size: 6vw;
   /* Adjust size as needed */
   font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .date {
@@ -434,8 +436,9 @@ a {
 }
 
 .map {
-  flex: 1;
-  padding: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  
 }
 
 iframe {
