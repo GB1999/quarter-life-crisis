@@ -3,13 +3,12 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import useOnScreen from '../hooks/useOnScreen';
 import useFrameAnimation from '../hooks/useFrameAnimation';
 import { submitRsvp } from '../firebase'; // Import the submitRsvp function
-import { generateImageUrls, getLoopedFrame, getFramePath } from '../utils/animationUtil';
+import { getLoopedFrame, getFramePath } from '../utils/animationUtil';
 
 
 // import useWindowSize from '../hooks/useWindowSize';
 
 const FRAME_RATE = 300; // Frame rate in milliseconds (500 ms = 0.5 seconds)
-const basePath = 'images';
 
 const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) => {
   const ref = useRef();
