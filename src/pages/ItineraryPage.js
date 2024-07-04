@@ -244,14 +244,17 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
                   <option value="no">No</option>
                 </select>
               </div>
-              <div className="form-group label-checkbox">
-                <label>Bringing a plus one</label>
-                <input
-                  type="checkbox"
+              <div className="form-group">
+                <label>Will you be bringing a plus one?</label>
+                <select
                   name="plusOne"
-                  checked={plusOne}
-                  onChange={(e) => setPlusOne(e.target.checked)}
-                />
+                  value={plusOne}
+                  onChange={(e) => setPlusOne(e.target.value)}
+                  required
+                >
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
               </div>
               <button type="submit" disabled={loading}>
                 {loading ? 'Submitting...' : 'Submit'}
