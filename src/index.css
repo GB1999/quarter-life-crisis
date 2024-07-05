@@ -211,7 +211,7 @@ body {
   max-width: 40%;
   min-width: 30%;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 5 vw;
   font-family: 'PunkLight2', sans-serif;
 }
 
@@ -219,7 +219,7 @@ body {
   margin: 0;
   padding: 10px 10px;
   color: #ffffff;
-  font-size: 3rem;
+  font-size: 10vw;
 }
 
 a {
