@@ -208,6 +208,8 @@ body {
 
 .itinerary-times {
   display: flex;
+  flex: 45%;
+  max-width: 45%;
   flex-direction: column;
   padding: 0 40px;
   font-family: 'PunkLight2', sans-serif;
