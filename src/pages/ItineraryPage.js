@@ -140,6 +140,7 @@ const ItineraryPage = () => {
 
         <div className='divider'></div>
         <EventDetails></EventDetails>
+        <div className='divider'></div>
         <RSVPButton onClick={toggleModal} />
       </motion.div>
 
