@@ -211,7 +211,7 @@ body {
   max-width: 40%;
   min-width: 30%;
   flex-direction: column;
-  padding: 0 5 vw;
+  padding: 0 10vw;
   font-family: 'PunkLight2', sans-serif;
 }
 
@@ -220,6 +220,7 @@ body {
   padding: 10px 10px;
   color: #ffffff;
   font-size: 10vw;
+  text-align: center;
 }
 
 a {
@@ -446,6 +447,7 @@ a {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px;
   
 }
 
