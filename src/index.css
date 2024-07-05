@@ -152,6 +152,12 @@ body {
   flex-direction: column;
 }
 
+.itinerary-container-title {
+  margin-bottom: 20px;
+  padding: 2vh;
+  color: white;
+  font-size: 10vw;
+}
 
 .itinerary-item {
   display: flex;
@@ -192,58 +198,26 @@ body {
 }
 
 .itinerary-details {
-  flex: 1 1 45%;
-  max-width: 45%;
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
   justify-content: space-between;
   font-family: 'Josefin Sans', sans-serif;
 }
 
-.itinerary-title {
+.itinerary-times {
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 40px;
   font-family: 'PunkLight2', sans-serif;
 }
 
-.itinerary-title p {
+.itinerary-times p {
   margin: 0;
   padding: 10px 10px;
   color: #ffffff;
   font-size: 3rem;
-}
-
-
-.itinerary-image-container {
-  flex: 1 1 45%;
-  max-width: 45%;
-  min-width: 300px;
-  display: flex;
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  /* 16:9 aspect ratio */
-  box-shadow: 10px 5px 5px black;
-  z-index: 20;
-}
-
-.itinerary-image-container ::before {
-  content: '';
-  display: block;
-}
-
-.itinerary-image-container img {
-  z-index: 20;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  /* Ensures the image covers the container while maintaining aspect ratio */
 }
 
 a {
@@ -301,6 +275,31 @@ a {
   /* Adjust the margin as needed */
 }
 
+.itinerary-image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
+  box-shadow: 10px 5px 5px black;
+  z-index: 20;
+}
+
+.itinerary-image-container ::before {
+  content: '';
+  display: block;
+}
+
+.itinerary-image-container img {
+  z-index: 20;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  /* Ensures the image covers the container while maintaining aspect ratio */
+}
 
 .modal-backdrop {
   position: fixed;
