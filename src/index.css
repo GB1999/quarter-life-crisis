@@ -224,6 +224,9 @@ body {
 
 
 .itinerary-image-container {
+  flex: 1 1 45%;
+  max-width: 45%;
+  display: flex;
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
