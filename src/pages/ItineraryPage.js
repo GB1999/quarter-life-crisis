@@ -263,10 +263,10 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
                 </select>
               </div>
               <button type="submit" disabled={loading}>
-                {loading ? 'Submitting...' : 'Submit'}
+                {loading ? 'SUBMITTING...' : 'SUBMIT'}
               </button>
               <button type="button" onClick={toggleModal}>
-                Cancel
+                CANCEL
               </button>
             </form>
           </motion.div>

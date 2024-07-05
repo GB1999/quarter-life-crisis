@@ -351,6 +351,9 @@ a {
   align-items: center;
   margin-bottom: 1vw;
 }
+.modal input[type=text]{
+  flex: 2;
+}
 
 .modal .form-group.label-checkbox {
   justify-content: space-between;
