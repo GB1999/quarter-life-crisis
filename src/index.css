@@ -6,7 +6,13 @@ body {
   overflow-x: hidden;
   /* Prevent horizontal scrolling */
   width: 100%;
+  position: relative
 }
+
+html {
+  overflow-x: hidden;
+}
+
 
 .container {
   position: relative;
