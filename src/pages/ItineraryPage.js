@@ -228,6 +228,8 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
               alt="RSVP"
               className="rsvp-title"
             />
+            <div className='divider'></div>
+
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
@@ -262,6 +264,7 @@ const RSVPModal = ({ isModalOpen, toggleModal }) => {
                   <option value="no">No</option>
                 </select>
               </div>
+              <div className='divider'></div>
               <button type="submit" disabled={loading}>
                 {loading ? 'SUBMITTING...' : 'SUBMIT'}
               </button>
