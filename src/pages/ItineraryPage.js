@@ -102,7 +102,7 @@ const ItineraryPage = () => {
         backgroundSize: 'cover',
         mixBlendMode: 'lighten',
       }} animate={controls}>
-        <EventDetails></EventDetails>
+        
         <div className="itinerary-container-title">
           <p>ITINERARY</p>
         </div>
@@ -139,6 +139,7 @@ const ItineraryPage = () => {
         </div>
 
         <div className='divider'></div>
+        <EventDetails></EventDetails>
         <RSVPButton onClick={toggleModal} />
       </motion.div>
 

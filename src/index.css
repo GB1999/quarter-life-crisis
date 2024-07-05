@@ -409,7 +409,7 @@ a {
 }
 
 .event-details {
-  flex: 1;
+  flex: 2;
   padding: 20px;
 }
 
@@ -444,6 +444,7 @@ a {
 .map {
   width: 100%;
   display: flex;
+  flex: 3;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
