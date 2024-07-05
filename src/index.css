@@ -153,8 +153,7 @@ body {
 }
 
 .itinerary-container-title {
-  margin-bottom: 20px;
-  padding: 2vh;
+  padding-top: 2vh;
   color: white;
   font-size: 10vw;
 }
@@ -217,9 +216,8 @@ body {
 
 .itinerary-times p {
   margin: 0;
-  padding: 10px 10px;
   color: #ffffff;
-  font-size: 10vw;
+  font-size: 8vw;
   text-align: center;
 }
 
