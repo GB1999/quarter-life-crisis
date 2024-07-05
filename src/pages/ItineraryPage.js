@@ -158,10 +158,12 @@ const EventDetails = () => {
       </div>
       <div className="map">
         <iframe title="google-map-directions" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" allowFullScreen src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=321%20West%20Ben%20White,%20106A,%20Austin,%20TX%2078704+(PhotoGroup)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-        </iframe></div>
+        </iframe>
         <div className="event-details-address">
           <p>321 W Ben White Blvd #106a</p>
         </div>
+      </div>
+       
     </div>
   );
 };
