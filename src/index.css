@@ -152,12 +152,6 @@ body {
   flex-direction: column;
 }
 
-.itinerary-container-title {
-  margin-bottom: 20px;
-  padding: 2vh;
-  color: white;
-  font-size: 10vw;
-}
 
 .itinerary-item {
   display: flex;
@@ -203,7 +197,6 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  align-items: center;
   justify-content: space-between;
   font-family: 'Josefin Sans', sans-serif;
 }
@@ -211,7 +204,7 @@ body {
 .itinerary-title {
   display: flex;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 20px;
   font-family: 'PunkLight2', sans-serif;
 }
 
