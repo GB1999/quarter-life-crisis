@@ -328,6 +328,8 @@ a {
   z-index: 1001;
   width: 80%;
   max-width: 600px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
 }
 
 .modal h2 {
