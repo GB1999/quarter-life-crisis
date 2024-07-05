@@ -284,6 +284,8 @@ a {
   /* 16:9 aspect ratio */
   box-shadow: 10px 5px 5px black;
   z-index: 20;
+  max-width: 60%;
+  min-width: 40%;
 }
 
 .itinerary-image-container ::before {
