@@ -45,7 +45,7 @@ const ItineraryItem = ({ title, startTime, endTime, imageSrc, imagePosition }) =
         <motion.div animate={controls} className="itinerary-image-container">
           <img src={imageSrc} alt={title} className="child-image" />
         </motion.div>
-        <div className="itinerary-times">
+        <div className="itinerary-title">
           <p>{title}</p>
           <div className="divider"></div>
         </div>
