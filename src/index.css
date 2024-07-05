@@ -328,7 +328,7 @@ a {
   z-index: 1001;
   width: 80%;
   max-width: 600px;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'AlteHaas', sans-serif;
   font-weight: bold;
 }
 
@@ -352,7 +352,7 @@ a {
   margin-bottom: 1vw;
 }
 .modal input[type=text]{
-  flex: 2;
+  flex: 4;
 }
 
 .modal .form-group.label-checkbox {
